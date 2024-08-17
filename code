@@ -1,0 +1,41 @@
+let person = message.guild.members.cache.filter(member => member.presence.status === "offline")
+
+  person.forEach(ppl => {
+
+    var role= message.guild.roles.cache.find(role => role.name === "invisible");
+
+    var roler= message.guild.roles.cache.find(role => role.name === "member");
+
+    ppl.roles.add(role)
+
+  })
+
+  let person2 = message.guild.members.cache.filter(member => member.presence.status !== "offline")
+
+  person2.forEach(ppl => {
+
+    var roler2= message.guild.roles.cache.find(role => role.name === "invisible");
+
+    ppl.roles.remove(roler2)
+
+  
+
+  })
+
+  var roler3= message.guild.roles.cache.find(role => role.name === "invisible");
+
+message.guild.channels.cache.forEach(channel =>{
+
+    channel.overwritePermissions([
+
+      {
+
+        id: roler3.id,
+
+        deny:['VIEW_CHANNEL' , 'SEND_MESSAGES'],
+
+      },
+
+    ]);
+
+})
